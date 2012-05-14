@@ -1,9 +1,10 @@
 from notes import Notes
+from musical.theory import Note
 '''
     Fugues start with a theme that sounds successively in each voice, creating the exposition.
 '''
 scale = Notes.scale('G3','minor')
-theme = (scale[:3] + Notes.triad('G3','minor')) * 2 + scale
+theme = (scale[:3] + Note('G3').triad('minor')) * 2 + scale
 exposition = theme%0.75 + (theme>>(3,'minor')) % 0.5 + (theme>>(5,'minor')) % 0.25
 '''
     This is followed by the episode, developed from previously heard material.

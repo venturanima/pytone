@@ -33,79 +33,6 @@ class Notes:
             newNotes.append(scale.transpose(root,i))
         return newNotes
     ''' 
-        Return chord of "root" within "scale"
-    '''
-    @classmethod
-    def triad(cls, rootStr, scale='major'):
-        if type(rootStr) == type((0,0)):
-            root = rootStr[0]
-        else:
-            root = Note(rootStr)
-        newNotes = Notes()
-        scale = Scale(root, scale)
-        third = scale.transpose(root, 2)
-        fifth = scale.transpose(root, 4)
-        newNotes.append([root, third, fifth])
-        return newNotes
-    ''' 
-        Return third of "root" within "scale"
-    '''
-    @classmethod
-    def third(cls, rootStr, scale='major'):
-        if type(rootStr) == type((0,0)):
-            root = rootStr[0]
-        else:
-            root = Note(rootStr)
-        newNotes = Notes()
-        scale = Scale(root, scale)
-        third = scale.transpose(root, 2)
-        newNotes.append([root, third])
-        return newNotes
-    ''' 
-        Return fifth of "root" within "scale"
-    '''
-    @classmethod
-    def fifth(cls, rootStr, scale='major'):
-        if type(rootStr) == type((0,0)):
-            root = rootStr[0]
-        else:
-            root = Note(rootStr)
-        newNotes = Notes()
-        scale = Scale(root, scale)
-        fifth = scale.transpose(root, 4)
-        newNotes.append([root, fifth])
-        return newNotes
-    ''' 
-        Return octave of "root" within "scale"
-    '''
-    @classmethod
-    def octave(cls, rootStr, scale='major'):
-        if type(rootStr) == type((0,0)):
-            root = rootStr[0]
-        else:
-            root = Note(rootStr)
-        newNotes = Notes()
-        scale = Scale(root, scale)
-        octave = scale.transpose(root, 7)
-        newNotes.append([root, octave])
-        return newNotes
-    ''' 
-        Return third and fifth but not root of "root" within "scale"
-    '''
-    @classmethod
-    def thirdFifth(cls, rootStr, scale='major'):
-        if type(rootStr) == type((0,0)):
-            root = rootStr[0]
-        else:
-            root = Note(rootStr)
-        newNotes = Notes()
-        scale = Scale(root, scale)
-        third = scale.transpose(root, 2)
-        fifth = scale.transpose(root, 4)
-        newNotes.append([third, fifth])
-        return newNotes
-        
-    ''' 
         Return arpeggio of "root" within "scale"
     '''
     @classmethod
@@ -172,7 +99,7 @@ class Notes:
         for (note,time,noteLen) in self.notes:
             if note.note in scale:
                 # print note.value, time, noteLen
-                octave = note.octave
+                octave = note.getOctave()
                 index = scale.index(note.note)
                 if (index+shiftDist)> len(scale) - 1:
                     octave += 1

@@ -1,4 +1,7 @@
 from notes import Notes
-notes = Notes.scale('G3')
-notes = notes + (~notes)[1:]
-notes.play()
+from musical.theory import Note
+
+
+base = Note('B3')
+afterIntro1 = base.triad()
+afterIntro1.play()

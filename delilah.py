@@ -1,4 +1,5 @@
 from notes import Notes
+from musical.theory import Note
 
 '''
     Introduction
@@ -23,10 +24,13 @@ verses = (verse*2)%0.5
 '''
     Verse Background
 '''
-afterIntro1 = Notes('B3') + Notes.thirdFifth('B3','minor')
+base = Note('B3')
+afterIntro1 = Notes(base, [base.third('minor'), base.fifth('minor')])
 afterIntro2 = Notes([('A4',0.5),('A3',0.5)],'-')
-afterIntro3 = Notes('G3') + Notes.thirdFifth('G3','major')
-afterIntro4 = Notes('A3') + Notes.thirdFifth('A3','major')
+base = Note('G3')
+afterIntro3 = Notes(base, [base.third(), base.fifth()])
+base = Note('A3')
+afterIntro4 = Notes(base, [base.third(), base.fifth()])
 afterIntro = afterIntro1*3 + afterIntro2 + afterIntro3*2 + afterIntro4*2\
                            + afterIntro1*4 + afterIntro3*2 + afterIntro4*2
 
