@@ -498,7 +498,7 @@ class Notes:
         print "Rendering timeline..."
         timeline = Timeline()
         for (note, time, noteLen) in self.notes:
-            timeline.add(time, Hit(note, noteLen))
+            timeline.add(time, Hit(note, noteLen, 'pluck'))
         render = timeline.render()
         print "Playing notes..."
         playback.play(render)

@@ -17,16 +17,24 @@ class Hit:
 
   cache = {}
 
-  def __init__(self, note, length):
+  def __init__(self, note, length, soundType = 'pluck'):
     self.note = note
     self.length = length
+    self.soundType = soundType
 
   def render(self):
     # Render hit of "key" for "length" amound of seconds
     # XXX: Currently only uses a string pluck
     key = (str(self.note), self.length)
     if key not in Hit.cache:
-      Hit.cache[key] = source.pluck(self.note, self.length)
+      if self.soundType == 'pluck':
+        Hit.cache[key] = source.pluck(self.note, self.length)
+      elif self.soundType == 'square':
+        Hit.cache[key] = source.square(self.note, self.length)
+      elif self.soundType == 'sawtooth':
+        Hit.cache[key] = source.sawtooth(self.note, self.length)
+      else:
+        Hit.cache[key] = source.sine(self.note, self.length)
     return Hit.cache[key]
 
 
